@@ -1,0 +1,9 @@
+.post{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px;
+    border-width: 100px;
+    height: 30px;
+    border-color: black;
+}
