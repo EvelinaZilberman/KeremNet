@@ -12,12 +12,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import ExpandMore from "../ExpendMore";
 import Comment from "../Comment/Comment";
-
-interface CommentProps{
-    author: string
-    content: string
-    likes: number
-}
+import CommentProps from '../Common/CommentStructure';
 
 interface PostProps{
     author: string

@@ -1,12 +1,7 @@
 import React from "react";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import './Comment.css'
-
-interface CommentProps{
-    author: string
-    content: string
-    likes: number
-}
+import CommentProps from '../Common/CommentStructure';
 
 const Comment: React.FC<CommentProps> = ({author, content, likes}) => {
     return(
