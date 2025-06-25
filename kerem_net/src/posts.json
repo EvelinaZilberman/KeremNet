@@ -1,0 +1,23 @@
+{
+    "author": "Max Monet",
+    "date": "25/06/2025 12:40",
+    "content": "Hello World!",
+    "likes": 4,
+    "comments": {
+        "author": "Marc Jacobs",
+        "conent": "Bonjour le monde",
+        "likes": 6
+    }
+}
+
+{
+    "author": "Madeleine Vionnet",
+    "date": "03/11/1910 6:40",
+    "content": "I'm fascinated by the art and culture of the Greek and Roman civilizations",
+    "likes": 10,
+    "comments": {
+        "author": "Valentino",
+        "conent": "I'm fascinated by the Middle Ages Art",
+        "likes": 8
+    }
+}
