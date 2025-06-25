@@ -1,4 +1,5 @@
 import React from "react";
+
 import Card from "@mui/material/Card";
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -8,10 +9,14 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandMore from "../ExpendMore";
 
-interface Comment{
-    comment: string
+import ExpandMore from "../ExpendMore";
+import Comment from "../Comment/Comment";
+
+interface CommentProps{
+    author: string
+    content: string
+    likes: number
 }
 
 interface PostProps{
@@ -19,10 +24,10 @@ interface PostProps{
     date: string
     content: string
     likes: number
-    comments: Comment[]
+    comments: CommentProps[]
 }
 
-const Post: React.FC<PostProps> = (props: PostProps) => {
+const Post: React.FC<PostProps> = ({author, date, content, likes, comments}) => {
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
@@ -32,16 +37,16 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
     return(
         <Card sx={{ maxWidth: 345, backgroundColor: 'lightblue' }}>
             <CardHeader
-                title={props.author}
-                subheader={props.date}/>
+                title={author}
+                subheader={date}/>
             <CardContent>
                 <Typography variant="body1" sx={{ color: 'text.primary' }}>
-                    {props.content}
+                    {content}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="like">
-                    <FavoriteIcon /> {props.likes}
+                    <FavoriteIcon /> {likes}
                 </IconButton>
                 <ExpandMore
                     expand={expanded}
@@ -55,9 +60,9 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <Typography sx={{ marginBottom: 2 }}>Comments:</Typography>
-                    {props.comments.map((comment) => 
+                    {comments.map((comment) => 
                         <Typography sx={{ marginBottom: 2 }}>
-                            {comment.comment}
+                            <Comment author={comment.author} content={comment.content} likes={comment.likes}/>
                         </Typography>
                     )}
         </CardContent>
