@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { CircularProgress } from '@mui/material';
 
-import PostProps from './features/Common/PostStructure';
-import Post from './features/Post/Post';
+import PostProps from '../Common/PostStructure';
+import Post from './Post';
 
-import './App.css';
 
-function App() {
-  const [posts, setPost] = useState<PostProps[]>([]);
+const PostList: React.FC = () => {
+    const [posts, setPosts] = useState<PostProps[]>([]);
 
     useEffect(() => {
         const fetchUsers = async () => {
           try {
-            const response = await axios.get<PostProps[]>('http://localhost:3001/posts');
-            setPost(response.data);
+            const response = await axios.get<PostProps[]>('http://localhost:3000/posts');
+            setPosts(response.data);
           } catch (error) {
             console.error("Error: ", error);
           }
@@ -23,11 +23,11 @@ function App() {
 
     return(
         <div>
-            {posts.map((post, index) => (
+            {posts.length == 0 ? <CircularProgress/>: posts.map((post, index) => (
                 <Post key={index} author={post.author} date={post.date} content={post.content} likes={post.likes} comments={post.comments}/>
             ))};
         </div>
     )
 }
 
-export default App;
+export default PostList;
