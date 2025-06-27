@@ -5,6 +5,8 @@ import PostProps from './features/Common/PostStructure';
 import Post from './features/Post/Post';
 
 import './App.css';
+import TopBar from './components/applicationLayout/TopBar/TopBar';
+import BottomBar from './components/applicationLayout/BottomBar/BottomBar';
 
 function App() {
   const [posts, setPost] = useState<PostProps[]>([]);
@@ -23,9 +25,11 @@ function App() {
 
     return(
         <div>
+          <TopBar/>
             {posts.map((post, index) => (
                 <Post key={index} author={post.author} date={post.date} content={post.content} likes={post.likes} comments={post.comments}/>
-            ))};
+            ))}
+          <BottomBar/>
         </div>
     )
 }
