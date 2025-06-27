@@ -12,15 +12,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import ExpandMore from "../ExpendMore";
 import Comment from "../Comment/Comment";
-import CommentProps from '../Common/CommentStructure';
+import PostProps from "../Common/PostStructure";
 
-interface PostProps{
-    author: string
-    date: string
-    content: string
-    likes: number
-    comments: CommentProps[]
-}
 
 const Post: React.FC<PostProps> = ({author, date, content, likes, comments}) => {
     const [expanded, setExpanded] = React.useState(false);
@@ -49,21 +42,20 @@ const Post: React.FC<PostProps> = ({author, date, content, likes, comments}) => 
                     aria-expanded={expanded}
                     aria-label="show more"
                 >
-                <ExpandMoreIcon />
-            </ExpandMore>
+                    <ExpandMoreIcon />
+                </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <Typography sx={{ marginBottom: 2 }}>Comments:</Typography>
-                    {comments.map((comment) => 
+                    {comments.map((comment, index) => 
                         <Typography sx={{ marginBottom: 2 }}>
-                            <Comment author={comment.author} content={comment.content} likes={comment.likes}/>
+                            <Comment key={index} author={comment.author} content={comment.content} likes={comment.likes}/>
                         </Typography>
                     )}
-        </CardContent>
-      </Collapse>
+                </CardContent>
+            </Collapse>
         </Card>
-
     )
 }
 
